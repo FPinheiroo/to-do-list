@@ -28,22 +28,51 @@ body {
   color: #ffff;
   border: solid #ff4600 1px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .container {
   width: 500px;
-  height: 70px;
   background-color: #ffff;
-  text-align: center;
+  /*text-align: center;*/
   border: solid white 2px;
   border-radius: 5px;
+  padding: 20px;
+  transition: height 0.3s ease;
+}
+.input-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+li {
+  margin: 5px 0;
 }
 #filter {
+  margin-left:10px ;
   text-align: center;
   height: 50px;
   font-size: 15px;
-  margin-left: 10px;
   background-color: #ff4600;
   color: #ffff;
   border: solid #ff4600 1px;
   border-radius: 5px;
+}
+.lista_a_fazer{
+  width: 100%;
+  list-style: none;
+  margin-top:10px;
+}
+.item{
+  background-color: #ffae69;
+  margin: 7px;
+  padding: 12px;
+  width: 80%;
+
 }
