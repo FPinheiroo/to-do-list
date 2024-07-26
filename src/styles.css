@@ -17,7 +17,7 @@ body {
   font-size: 15px;
   margin-top: 7px;
   border: solid black 1px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 #add {
   height: 50px;
@@ -27,18 +27,21 @@ body {
   background-color: #ff4600;
   color: #ffff;
   border: solid #ff4600 1px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
 }
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 500px;
   background-color: #ffff;
-  /*text-align: center;*/
   border: solid white 2px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 20px;
   transition: height 0.3s ease;
 }
+
 .input-section {
   display: flex;
   align-items: center;
@@ -55,24 +58,46 @@ li {
   margin: 5px 0;
 }
 #filter {
-  margin-left:10px ;
+  margin-left: 10px;
   text-align: center;
   height: 50px;
   font-size: 15px;
   background-color: #ff4600;
   color: #ffff;
   border: solid #ff4600 1px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
-.lista_a_fazer{
+.lista_a_fazer {
   width: 100%;
   list-style: none;
-  margin-top:10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
-.item{
+.item {
   background-color: #ffae69;
   margin: 7px;
   padding: 12px;
-  width: 80%;
-
+  width: 88%;
+  display: flex;
+  justify-content: space-between;
+  margin: solid #ffae69 1px;
+  border-radius: 10px;
+}
+.item-buttons {
+  display: flex;
+  gap: 5px;
+}
+.del_task, .edit_task {
+  background-color: #ff4600; 
+  border: solid #ff4600 1px;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}
+li.item{
+  text-align: center;
 }
