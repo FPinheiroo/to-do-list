@@ -11,6 +11,13 @@ body {
   justify-content: center;
   background-color: #ff4600;
 }
+.t {
+  text-align: center;
+}
+.t2 {
+  margin-top: 10px;
+  text-align: center;
+}
 #to_do {
   text-align: center;
   height: 50px;
@@ -18,6 +25,18 @@ body {
   margin-top: 7px;
   border: solid black 1px;
   border-radius: 10px;
+}
+#to_do_desc {
+  text-align: center;
+  height: 50px;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-top: 7px;
+  border: solid black 1px;
+  border-radius: 10px;
+}
+#desc{
+margin-top: 5px;
 }
 #add {
   height: 50px;
@@ -41,7 +60,6 @@ body {
   padding: 20px;
   transition: height 0.3s ease;
 }
-
 .input-section {
   display: flex;
   align-items: center;
@@ -74,7 +92,6 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 .item {
   background-color: #ffae69;
@@ -83,15 +100,18 @@ li {
   width: 88%;
   display: flex;
   justify-content: space-between;
-  margin: solid #ffae69 1px;
   border-radius: 10px;
+}
+.item div {
+  display: flex;
+  flex-direction: column;
 }
 .item-buttons {
   display: flex;
   gap: 5px;
 }
 .del_task, .edit_task {
-  background-color: #ff4600; 
+  background-color: #ff4600;
   border: solid #ff4600 1px;
   border-radius: 10px;
   cursor: pointer;
