@@ -5,25 +5,40 @@ function App() {
   const [iteml, setItemL] = useState([]);
   const [inputT, setinputT] = useState("");
   const [inputTD, setinputTD] = useState("");
+  const [editId, setEditId] = useState(null);
 
   function handleAddItem() {
     const textovazio = inputT.trim();
     const descricaovazia = inputTD.trim();
     if (textovazio === "" || descricaovazia === "") return;
 
-    let newItem = {
-      id: Date.now(),
-      itemLista: textovazio,
-      itemDescricao: descricaovazia
-    };
+    if (editId) {
+      const updatedItems = iteml.map((item) => 
+        item.id === editId ? { ...item, itemLista: textovazio, itemDescricao: descricaovazia } : item
+      );
+      setItemL(updatedItems);
+      setEditId(null);
+    } else {
+      let newItem = {
+        id: Date.now(),
+        itemLista: textovazio,
+        itemDescricao: descricaovazia
+      };
+      setItemL([...iteml, newItem]);
+    }
 
-    setItemL([...iteml, newItem]);
     setinputT("");
     setinputTD("");
   }
 
   function handleExcluirItem(item) {
     setItemL((prevList) => prevList.filter((lista) => lista.id !== item.id));
+  }
+
+  function handleEditItem(item) {
+    setinputT(item.itemLista);
+    setinputTD(item.itemDescricao);
+    setEditId(item.id);
   }
 
   return (
@@ -46,11 +61,11 @@ function App() {
           <li className="item" key={item.id}>
             <div>
               <strong>{item.itemLista}</strong>
-              <p id="desc">{item.itemDescricao}</p>
+              <p>{item.itemDescricao}</p>
             </div>
             <div className="item-buttons">
               <button className="del_task" onClick={() => handleExcluirItem(item)}>❌</button>
-              <button className="edit_task">✏️</button>
+              <button className="edit_task" onClick={() => handleEditItem(item)}>✏️</button>
             </div>
           </li>
         ))}
