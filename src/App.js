@@ -10,6 +10,10 @@ function App() {
     setinputT("");
   }
 
+  function handleExcluirItem(item){
+    setItemL((prevList) => prevList.filter((lista)=> lista != item));
+  }
+
   return (
     <div className="container">
       <div class="t">
@@ -26,7 +30,7 @@ function App() {
           <li className="item" key={i}>
             {item}
             <div className="item-buttons">
-              <button className="del_task">❌</button>
+              <button className="del_task" onClick={() => handleExcluirItem(item)}>❌</button>
               <button className="edit_task">✏️</button>
             </div>
           </li>
