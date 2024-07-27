@@ -6,7 +6,15 @@ function App() {
   const [inputT, setinputT] = useState("");
 
   function handleAddItem() {
-    setItemL([...iteml, inputT]);
+    const textovazio = inputT.trim()
+    if (textovazio == "") return;
+
+    let newItem = {
+      id:Date.now(),
+      itemLista: textovazio,
+    }
+
+    setItemL([...iteml, newItem]);
     setinputT("");
   }
 
@@ -26,9 +34,9 @@ function App() {
           <option>Pendentes</option>
         </select>
       </div>
-      <ul className="lista_a_fazer">{iteml.map((item, i) => (
-          <li className="item" key={i}>
-            {item}
+      <ul className="lista_a_fazer">{iteml.map((item) => (
+          <li className="item" key={item.id}>
+            {item.itemLista}
             <div className="item-buttons">
               <button className="del_task" onClick={() => handleExcluirItem(item)}>❌</button>
               <button className="edit_task">✏️</button>
