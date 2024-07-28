@@ -30,7 +30,7 @@ function App() {
         itemDescricao: descricaovazia,
         itemData: formattedDate
       };
-      setItemL([...iteml, newItem]);
+      setItemL([...iteml, newItem].sort((a, b) => b.id - a.id));
     }
 
     setinputT("");
@@ -57,7 +57,7 @@ function App() {
         <button id="add" onClick={handleAddItem}>Adicionar</button>
         <select id="filter">
           <option>Todas as Tarefas</option>
-          <option>Data</option>
+          <option value={Date}>Data</option>
           <option>Concluidas</option>
           <option>Pendentes</option>
         </select>
