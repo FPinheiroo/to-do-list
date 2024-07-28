@@ -40,7 +40,7 @@ margin-top: 5px;
 }
 #add {
   height: 50px;
-  width: 70px;
+  width: 150px;
   font-size: 15px;
   margin-left: 10px;
   background-color: #ff4600;
@@ -96,6 +96,15 @@ li {
 
 #filter {
   margin-left: 10px;
+}
+#search {
+  width: 80%;
+  height: 50px;
+  font-size: 15px;
+  margin-top: 20px;
+  border: solid black 1px;
+  border-radius: 10px;
+  padding: 10px;
 }
 .lista_a_fazer {
   width: 100%;

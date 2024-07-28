@@ -7,6 +7,7 @@ function App() {
   const [inputTD, setinputTD] = useState("");
   const [editId, setEditId] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
 
   function handleAddItem() {
     const textovazio = inputT.trim();
@@ -19,8 +20,7 @@ function App() {
     if (editId) {
       const updatedItems = iteml.map((item) =>
         item.id === editId
-          ? { ...item, itemLista: textovazio, itemDescricao: descricaovazia, itemData: formattedDate }: item
-      );
+          ? { ...item, itemLista: textovazio, itemDescricao: descricaovazia, itemData: formattedDate }: item);
       setItemL(updatedItems);
       setEditId(null);
     } else {
@@ -65,6 +65,10 @@ function App() {
     setFilter(e.target.value);
   }
 
+  function handleSearchChange(e) {
+    setSearch(e.target.value);
+  }
+
   const filteredItems = iteml.filter(item => {
     if (filter === "completed") {
       return item.isCompleted && !item.isArchived;
@@ -75,6 +79,8 @@ function App() {
     } else {
       return !item.isArchived;
     }
+  }).filter(item => {
+    return item.itemLista.toLowerCase().includes(search.toLowerCase());
   });
 
   return (
@@ -93,6 +99,9 @@ function App() {
           <option value="todo">Pendentes</option>
           <option value="archived">Arquivadas</option>
         </select>
+      </div>
+      <div className="search-section">
+        <input placeholder="Pesquisar..."id="search"type="text"value={search}onChange={handleSearchChange}/>
       </div>
       <ul className="lista_a_fazer">
         {filteredItems.map((item) => (
