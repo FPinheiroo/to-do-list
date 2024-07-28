@@ -12,9 +12,14 @@ function App() {
     const descricaovazia = inputTD.trim();
     if (textovazio === "" || descricaovazia === "") return;
 
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+
     if (editId) {
-      const updatedItems = iteml.map((item) => 
-        item.id === editId ? { ...item, itemLista: textovazio, itemDescricao: descricaovazia } : item
+      const updatedItems = iteml.map((item) =>
+        item.id === editId
+          ? { ...item, itemLista: textovazio, itemDescricao: descricaovazia, itemData: formattedDate }
+          : item
       );
       setItemL(updatedItems);
       setEditId(null);
@@ -22,7 +27,8 @@ function App() {
       let newItem = {
         id: Date.now(),
         itemLista: textovazio,
-        itemDescricao: descricaovazia
+        itemDescricao: descricaovazia,
+        itemData: formattedDate
       };
       setItemL([...iteml, newItem]);
     }
@@ -62,6 +68,7 @@ function App() {
             <div>
               <strong>{item.itemLista}</strong>
               <p>{item.itemDescricao}</p>
+              <small>{item.itemData}</small>
             </div>
             <div className="item-buttons">
               <button className="del_task" onClick={() => handleExcluirItem(item)}>❌</button>
