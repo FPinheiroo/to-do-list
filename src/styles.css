@@ -5,7 +5,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 body {
-  height: 400px;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,18 +49,27 @@ margin-top: 5px;
   border-radius: 10px;
   cursor: pointer;
 }
+input[type="text"] {
+  text-align: center;
+  height: 50px;
+  font-size: 15px;
+  margin: 7px 10px 0 0;
+  border: solid black 1px;
+  border-radius: 10px;
+  width: calc(50% - 20px);
+}
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 500px;
-  background-color: #ffff;
-  border: solid white 2px;
+  background-color: #fff;
+  border: solid #fff 2px;
   border-radius: 10px;
   padding: 20px;
   transition: height 0.3s ease;
 }
-.input-section {
+.input-section, .action-section{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,15 +84,18 @@ ul {
 li {
   margin: 5px 0;
 }
-#filter {
-  margin-left: 10px;
-  text-align: center;
+#add, #filter {
   height: 50px;
   font-size: 15px;
   background-color: #ff4600;
-  color: #ffff;
+  color: #fff;
   border: solid #ff4600 1px;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+#filter {
+  margin-left: 10px;
 }
 .lista_a_fazer {
   width: 100%;
@@ -101,6 +113,11 @@ li {
   display: flex;
   justify-content: space-between;
   border-radius: 10px;
+  align-items: center;
+}
+.item.completed {
+  background-color: #d4edda;
+  text-decoration: line-through;
 }
 .item div {
   display: flex;
@@ -117,11 +134,18 @@ li {
   cursor: pointer;
   height: 30px;
   width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 small{
   margin-top: 5px;
   font-size: 12px;
   color: #555;
+}
+input[type="checkbox"] {
+  margin-right: 10px;
 }
 p{
   margin-top: 5px;

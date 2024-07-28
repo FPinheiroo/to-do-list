@@ -28,7 +28,8 @@ function App() {
         id: Date.now(),
         itemLista: textovazio,
         itemDescricao: descricaovazia,
-        itemData: formattedDate
+        itemData: formattedDate,
+        isCompleted: false
       };
       setItemL([...iteml, newItem].sort((a, b) => b.id - a.id));
     }
@@ -47,24 +48,39 @@ function App() {
     setEditId(item.id);
   }
 
+  function handleToggleComplete(item) {
+    const updatedItems = iteml.map((task) =>
+      task.id === item.id ? { ...task, isCompleted: !task.isCompleted } : task
+    );
+    setItemL(updatedItems);
+  }
+
   return (
     <div className="container">
       <div class="t">
         <input placeholder="Digite sua tarefa aqui!" id="to_do" type="text" value={inputT} onChange={(e) => setinputT(e.target.value)}/>
         <input placeholder="Descrição aqui!" id="to_do_desc" type="text" value={inputTD} onChange={(e) => setinputTD(e.target.value)}/>
         </div>
-        <div class="t2">
-        <button id="add" onClick={handleAddItem}>Adicionar</button>
+      <div className="t2">
+        <button id="add" onClick={handleAddItem}>
+          {editId ? "Atualizar" : "Adicionar"}
+        </button>
         <select id="filter">
           <option>Todas as Tarefas</option>
-          <option value={Date}>Data</option>
           <option>Concluidas</option>
           <option>Pendentes</option>
         </select>
       </div>
       <ul className="lista_a_fazer">
         {iteml.map((item) => (
-          <li className="item" key={item.id}>
+          <li className={`item ${item.isCompleted ? 'completed' : ''}`} key={item.id}>
+            <div>
+              <input
+                type="checkbox"
+                checked={item.isCompleted}
+                onChange={() => handleToggleComplete(item)}
+              />
+            </div>
             <div>
               <strong>{item.itemLista}</strong>
               <p>{item.itemDescricao}</p>
