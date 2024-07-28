@@ -86,7 +86,7 @@ function App() {
   return (
     <div className="container">
       <div class="t">
-        <input placeholder="Digite sua tarefa aqui!" id="to_do" type="text" value={inputT} onChange={(e) => setinputT(e.target.value)}/>
+        <input placeholder="Digite sua tarefa!" id="to_do" type="text" value={inputT} onChange={(e) => setinputT(e.target.value)}/>
         <input placeholder="Descrição aqui!" id="to_do_desc" type="text" value={inputTD} onChange={(e) => setinputTD(e.target.value)}/>
         </div>
       <div className="t2">
@@ -131,3 +131,4 @@ function App() {
 }
 
 export default App;
+ 
