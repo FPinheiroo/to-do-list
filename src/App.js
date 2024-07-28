@@ -29,7 +29,8 @@ function App() {
         itemLista: textovazio,
         itemDescricao: descricaovazia,
         itemData: formattedDate,
-        isCompleted: false
+        isCompleted: false,
+        isArchived: false
       };
       setItemL([...iteml, newItem].sort((a, b) => b.id - a.id));
     }
@@ -54,14 +55,14 @@ function App() {
     setItemL(updatedItems);
   }
 
-  function handleFilterChange(e) {
-    setFilter(e.target.value);
-  }
   function handleArchivedTask(item) {
     const updatedItems = iteml.map((task) =>
-      task.id === item.id ? { ...task, isArchived: true } : task
-    );
+      task.id === item.id ? { ...task, isArchived: !task.isArchived } : task);
     setItemL(updatedItems);
+  }
+
+  function handleFilterChange(e) {
+    setFilter(e.target.value);
   }
 
   const filteredItems = iteml.filter(item => {
@@ -92,10 +93,10 @@ function App() {
           <option value="todo">Pendentes</option>
           <option value="archived">Arquivadas</option>
         </select>
-        </div>
+      </div>
       <ul className="lista_a_fazer">
         {filteredItems.map((item) => (
-          <li className={`item ${item.isCompleted ? 'completed' : ''}`} key={item.id}>
+          <li className={`item ${item.isCompleted ? 'completed' : ''} ${item.isArchived ? 'archived' : ''}`} key={item.id}>
             <div>
               <input
                 type="checkbox"
