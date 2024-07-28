@@ -127,7 +127,10 @@ li {
   display: flex;
   gap: 5px;
 }
-.del_task, .edit_task {
+.item.archived{
+  background-color: #555;
+}
+.del_task, .edit_task, .archived_task {
   background-color: #ff4600;
   border: solid #ff4600 1px;
   border-radius: 10px;

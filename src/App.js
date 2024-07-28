@@ -57,14 +57,22 @@ function App() {
   function handleFilterChange(e) {
     setFilter(e.target.value);
   }
+  function handleArchivedTask(item) {
+    const updatedItems = iteml.map((task) =>
+      task.id === item.id ? { ...task, isArchived: true } : task
+    );
+    setItemL(updatedItems);
+  }
 
   const filteredItems = iteml.filter(item => {
     if (filter === "completed") {
-      return item.isCompleted;
+      return item.isCompleted && !item.isArchived;
     } else if (filter === "todo") {
-      return !item.isCompleted;
+      return !item.isCompleted && !item.isArchived;
+    } else if (filter === "archived") {
+      return item.isArchived;
     } else {
-      return true;
+      return !item.isArchived;
     }
   });
 
@@ -82,6 +90,7 @@ function App() {
           <option value="all">Todas as Tarefas</option>
           <option value="completed">Concluidas</option>
           <option value="todo">Pendentes</option>
+          <option value="archived">Arquivadas</option>
         </select>
         </div>
       <ul className="lista_a_fazer">
@@ -102,6 +111,7 @@ function App() {
             <div className="item-buttons">
               <button className="del_task" onClick={() => handleExcluirItem(item)}>🗑️</button>
               <button className="edit_task" onClick={() => handleEditItem(item)}>✏️</button>
+              <button className="archived_task" onClick={() => handleArchivedTask(item)}>📁</button>
             </div>
           </li>
         ))}
