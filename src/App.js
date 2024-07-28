@@ -6,6 +6,7 @@ function App() {
   const [inputT, setinputT] = useState("");
   const [inputTD, setinputTD] = useState("");
   const [editId, setEditId] = useState(null);
+  const [filter, setFilter] = useState("all");
 
   function handleAddItem() {
     const textovazio = inputT.trim();
@@ -18,8 +19,7 @@ function App() {
     if (editId) {
       const updatedItems = iteml.map((item) =>
         item.id === editId
-          ? { ...item, itemLista: textovazio, itemDescricao: descricaovazia, itemData: formattedDate }
-          : item
+          ? { ...item, itemLista: textovazio, itemDescricao: descricaovazia, itemData: formattedDate }: item
       );
       setItemL(updatedItems);
       setEditId(null);
@@ -50,10 +50,23 @@ function App() {
 
   function handleToggleComplete(item) {
     const updatedItems = iteml.map((task) =>
-      task.id === item.id ? { ...task, isCompleted: !task.isCompleted } : task
-    );
+      task.id === item.id ? { ...task, isCompleted: !task.isCompleted } : task);
     setItemL(updatedItems);
   }
+
+  function handleFilterChange(e) {
+    setFilter(e.target.value);
+  }
+
+  const filteredItems = iteml.filter(item => {
+    if (filter === "completed") {
+      return item.isCompleted;
+    } else if (filter === "todo") {
+      return !item.isCompleted;
+    } else {
+      return true;
+    }
+  });
 
   return (
     <div className="container">
@@ -65,14 +78,14 @@ function App() {
         <button id="add" onClick={handleAddItem}>
           {editId ? "Atualizar" : "Adicionar"}
         </button>
-        <select id="filter">
-          <option>Todas as Tarefas</option>
-          <option>Concluidas</option>
-          <option>Pendentes</option>
+        <select id="filter" value={filter} onChange={handleFilterChange}>
+          <option value="all">Todas as Tarefas</option>
+          <option value="completed">Concluidas</option>
+          <option value="todo">Pendentes</option>
         </select>
-      </div>
+        </div>
       <ul className="lista_a_fazer">
-        {iteml.map((item) => (
+        {filteredItems.map((item) => (
           <li className={`item ${item.isCompleted ? 'completed' : ''}`} key={item.id}>
             <div>
               <input
@@ -87,7 +100,7 @@ function App() {
               <small>{item.itemData}</small>
             </div>
             <div className="item-buttons">
-              <button className="del_task" onClick={() => handleExcluirItem(item)}>❌</button>
+              <button className="del_task" onClick={() => handleExcluirItem(item)}>🗑️</button>
               <button className="edit_task" onClick={() => handleEditItem(item)}>✏️</button>
             </div>
           </li>
