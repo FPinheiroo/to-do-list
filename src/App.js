@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./styles.css";
+import logo from "./img/logo.png"
 
 function App() {
   const [iteml, setItemL] = useState([]);
@@ -85,6 +86,8 @@ function App() {
 
   return (
     <div className="container">
+      <img src={logo}/>
+      <p class="name">Lista de Tarefas</p>
       <div class="t">
         <input placeholder="Digite sua tarefa!" id="to_do" type="text" value={inputT} onChange={(e) => setinputT(e.target.value)}/>
         <input placeholder="Descrição aqui!" id="to_do_desc" type="text" value={inputTD} onChange={(e) => setinputTD(e.target.value)}/>
